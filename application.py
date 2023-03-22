@@ -6,7 +6,7 @@
 
 from flask import Flask, request
 
-from flask_sqlalchemy   import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -34,7 +34,7 @@ def get_books():
         output.append(book_data)
     return {'Books': output}
 
-@app.route('/books/id')
+@app.route('/books/<id>')
 def get_book(id):
     book = Book.query.get_or_404(id)
     return {'Name': book.book_name, 'Author': book.author, 'Publisher': book.publisher}
